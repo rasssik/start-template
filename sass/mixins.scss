@@ -1,0 +1,89 @@
+@mixin clearfix {
+  &::after {
+    content: "";
+    display: table;
+    line-height: 0;
+    clear: both;
+  }
+}
+
+@mixin container {
+  width: 280px;
+  margin: 0 auto;
+  @media (min-width: $tablet) {
+    width: 700px;
+  }
+  @media (min-width: $desktop) {
+    width: 1230px;
+  }
+}
+
+@mixin center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+@mixin vertical {
+  &:before {
+    content: '';
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%; width: .1px;
+  }
+}
+
+// for nice text
+@mixin truncateText($overflow: ellipsis) {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: $overflow; // values are: clip, ellipsis, or a string
+}
+
+// tooltip
+@mixin tooltip($content: attr(data-tooltip), $direction: top) {
+  position: relative;
+
+  &:before, &:after {
+    display: none;
+    z-index: 98;
+  }
+  &:hover {
+    &:after { // for text bubble
+      content: $content;
+      display: block;
+      position: absolute;
+      height: 12px; // (makes total height including padding 22px)
+      padding: 6px;
+      font-size: 12px;
+      white-space: nowrap;
+      color: #fff;
+      @include text-shadow(1px 1px #000);
+      background-color: #222;
+    }
+    @if ($direction == 'top') {
+      &:before {
+        @include triangle(down, 6px, #222);
+        top: -6px; margin-top: 0;
+        left: 47%;
+      }
+      &:after {
+        top: -28px;
+        left: 47%; margin-left: -20px;
+      }
+    }
+    @else if ($direction == 'bottom') {
+      &:before {
+        @include triangle(up, 6px, #222);
+        top: auto; margin-top: 0;
+        bottom: -6px;
+        left: 47%;
+      }
+      &:after {
+        bottom: -28px;
+        left: 47%; margin-left: -20px;
+      }
+    }
+  }
+}

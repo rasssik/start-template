@@ -1,0 +1,34 @@
+// inputs and selects base ( @extend )
+%form_field {
+	display: block;
+	width: 100%;
+	height: 1rem;
+	padding: 0.5rem;
+	font: normal 1rem/1.33 $font_1;
+	color: $color_field;
+	box-shadow: inset 0 0 0 1px $black;
+	border: 1px solid $color_field_border;
+	border-radius: 5px;
+
+	&::-webkit-input-placeholder {
+		color: $color_field;
+	}
+	&::-moz-placeholder {
+		color: $color_field;
+	}
+	&:-ms-input-placeholder {
+		color: $color_field;
+	}
+	
+	&:hover {
+		border-color: $color_field_hover;
+	}
+	&:focus {
+		outline: none;
+		border-color: $color_field_hover;
+	}
+	&:required:valid {
+		border-color: $green;
+	}
+}
+// end inputs and selects base

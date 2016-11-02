@@ -1,0 +1,51 @@
+// base style
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+	height: 100%;
+	font: 400 10px/1.33 $font_1;
+}
+
+body {
+  position: relative;
+  margin: 0;
+  padding: 0;
+	height: 100%;
+  font-size: calc(1em+1vw);
+  font-family: "Fira Sans", "Arial", sans-serif;
+  font-weight: normal;
+  font-style: normal;
+	background: $body-bg;
+  color: black;
+	-webkit-text-size-adjust: none;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+body * + * {
+	margin-top: 1rem;
+}
+
+dl, dt, dd {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+	text-decoration: none;
+	color: $color_link;
+	&:hover,
+	&:focus {
+		text-decoration: underline;
+	}
+}
+
+.wrapper {
+	position: relative;
+	min-height: 100%;
+	height: auto !important;
+	overflow: hidden;
+}
+// end base style

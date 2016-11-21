@@ -8,14 +8,17 @@
 }
 
 @mixin container {
-  width: 280px;
+  width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
-  @media (min-width: $tablet) {
-    width: 700px;
-  }
-  @media (min-width: $desktop) {
-    width: 1230px;
-  }
+	padding: 0 15px;
+
+  // @media (min-width: $tablet) {
+  //   width: 700px;
+  // }
+  // @media (min-width: $desktop) {
+  //   width: 1230px;
+  // }
 }
 
 @mixin center {

@@ -76,25 +76,22 @@ table {
 
 html {
   height: 100%;
-  font: 400 10px/1.33 "Fira Sans", "Arial", sans-serif; }
+  font: 300 7px/1.33 "Fira Sans", "Arial", sans-serif; }
 
 body {
   position: relative;
   margin: 0;
   padding: 0;
   height: 100%;
-  font-size: calc(1em+1vw);
-  font-family: "Fira Sans", "Arial", sans-serif;
-  font-weight: normal;
-  font-style: normal;
-  background: white;
+  width: 100%;
+  min-width: 30rem;
+  min-height: 100%;
+  font: 300 2rem/1.3 "Fira Sans", "Arial", sans-serif;
   color: black;
+  overflow-x: hidden;
   -webkit-text-size-adjust: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
-
-body * + * {
-  margin-top: 1rem; }
 
 dl, dt, dd {
   margin: 0;
@@ -111,3 +108,33 @@ a {
   min-height: 100%;
   height: auto !important;
   overflow: hidden; }
+
+.back-top {
+  position: fixed;
+  bottom: 3rem;
+  right: 3rem;
+  z-index: 1000; }
+  .back-top a {
+    display: block;
+    width: 5rem;
+    height: 5rem;
+    background: url("../img/icons/top.svg") center no-repeat;
+    background-size: contain;
+    text-align: center;
+    text-decoration: none; }
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px; }
+
+@media (min-width: 768px) {
+
+  html {
+    font-size: 9px; } }
+
+@media (min-width: 1024px) {
+
+  html {
+    font-size: 10px; } }

@@ -5,7 +5,15 @@
 
 html {
 	height: 100%;
-	font: 400 10px/1.33 $font_1;
+	font: 300 7px/1.33 $font_1;
+
+// if you want responsive adaptive
+	@media (min-width: $tablet) {
+		font-size: 9px;
+	}
+	@media (min-width: $desktop) {
+		font-size: 10px;
+	}
 }
 
 body {
@@ -13,19 +21,15 @@ body {
   margin: 0;
   padding: 0;
 	height: 100%;
-  font-size: calc(1em+1vw);
-  font-family: "Fira Sans", "Arial", sans-serif;
-  font-weight: normal;
-  font-style: normal;
-	background: $body-bg;
-  color: black;
+  width: 100%;
+	min-width: 30rem;
+	min-height: 100%;
+	font: 300 2rem/1.3 $font_1;
+	color: black;
+	overflow-x: hidden;
 	-webkit-text-size-adjust: none;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-}
-
-body * + * {
-	margin-top: 1rem;
 }
 
 dl, dt, dd {
@@ -47,5 +51,27 @@ a {
 	min-height: 100%;
 	height: auto !important;
 	overflow: hidden;
+}
+
+// back to top
+.back-top {
+	position: fixed;
+	bottom: 3rem;
+	right: 3rem;
+	z-index: 1000;
+
+	a {
+		display: block;
+		width: 5rem;
+		height: 5rem;
+		background: url("../img/icons/top.svg") center no-repeat;
+		background-size: contain;
+		text-align: center;
+		text-decoration: none;
+
+		// &:hover {
+		// 	background-image: url("../img/icons/top_hover.svg");
+		// }
+	}
 }
 // end base style

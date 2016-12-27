@@ -1,31 +1,7 @@
 @font-face {
-  font-family: "Fira Sans";
-  src: local("Fira Sans ExtraLight"), local("FiraSans-ExtraLight"), url("../fonts/fira-sans/firasansextralight.woff2") format("woff2"), url("../fonts/fira-sans/firasansextralight.woff") format("woff"), url("../fonts/fira-sans/firasansextralight.ttf") format("truetype");
-  font-weight: 100;
-  font-style: normal; }
-
-@font-face {
-  font-family: "Fira Sans";
-  src: local("Fira Sans Light"), local("FiraSans-Light"), url("../fonts/fira-sans/firasanslight.woff2") format("woff2"), url("../fonts/fira-sans/firasanslight.woff") format("woff"), url("../fonts/fira-sans/firasanslight.ttf") format("truetype");
-  font-weight: 200;
-  font-style: normal; }
-
-@font-face {
-  font-family: "Fira Sans";
-  src: local("Fira Sans"), local("FiraSans-Regular"), url("../fonts/fira-sans/firasans.woff2") format("woff2"), url("../fonts/fira-sans/firasans.woff") format("woff"), url("../fonts/fira-sans/firasans.ttf") format("truetype");
+  font-family: "Segoe";
+  src: local("Segoe"), local("Segoe-ui"), url("../fonts/fira-sans/segoeui.woff2") format("woff2"), url("../fonts/fira-sans/segoeui.woff") format("woff"), url("../fonts/fira-sans/segoeui.ttf") format("truetype");
   font-weight: 400;
-  font-style: normal; }
-
-@font-face {
-  font-family: "Fira Sans";
-  src: local("Fira Sans Medium"), local("FiraSans-Medium"), url("../fonts/fira-sans/firasansmedium.woff2") format("woff2"), url("../fonts/fira-sans/firasansmedium.woff") format("woff"), url("../fonts/fira-sans/firasansmedium.ttf") format("truetype");
-  font-weight: 500;
-  font-style: normal; }
-
-@font-face {
-  font-family: "Fira Sans";
-  src: local("Fira Sans Bold"), local("FiraSans-Bold"), url("../fonts/fira-sans/firasansbold.woff2") format("woff2"), url("../fonts/fira-sans/firasansbold.woff") format("woff"), url("../fonts/fira-sans/firasansbold.ttf") format("truetype");
-  font-weight: 700;
   font-style: normal; }
 
 html, body, div, span, applet, object, iframe,
@@ -75,8 +51,8 @@ table {
   box-sizing: border-box; }
 
 html {
-  height: 100%;
-  font: 300 7px/1.33 "Fira Sans", "Arial", sans-serif; }
+  min-height: 100%;
+  font-size: 7px; }
 
 body {
   position: relative;
@@ -84,9 +60,9 @@ body {
   padding: 0;
   height: 100%;
   width: 100%;
-  min-width: 30rem;
+  max-width: 100%;
   min-height: 100%;
-  font: 300 2rem/1.3 "Fira Sans", "Arial", sans-serif;
+  font: 300 2rem/1.3 "Segoe", "Arial", sans-serif;
   color: black;
   overflow-x: hidden;
   -webkit-text-size-adjust: none;
@@ -100,7 +76,7 @@ dl, dt, dd {
 a {
   text-decoration: none;
   color: #b5b9be; }
-  a:hover, a:focus {
+  a:hover, a:active, a:focus {
     text-decoration: underline; }
 
 .wrapper {
@@ -122,14 +98,227 @@ a {
     background-size: contain;
     text-align: center;
     text-decoration: none; }
+    .back-top a:hover {
+      background-image: url("../img/icons/top_hover.svg"); }
 
 .container {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 15px; }
+  padding: 0 1rem; }
 
-@media (min-width: 768px) {
+.btn {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 1rem;
+  padding: 1rem 2rem;
+  border: none;
+  background-color: #878787;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  font: normal 2.2rem "Segoe", "Arial", sans-serif;
+  color: #fff; }
+  .btn:hover, .btn:active {
+    text-decoration: none; }
+
+.modal {
+  z-index: 1000;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 60rem;
+  max-width: 100%;
+  height: 40rem;
+  max-height: 100%;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0.4rem 0.4rem 0.5rem rgba(76, 76, 76, 0.75);
+  outline: 0;
+  overflow: hidden;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  transition: all .5s ease; }
+  .modal_show {
+    display: block;
+    -webkit-animation: bounce 0.6s;
+            animation: bounce 0.6s; }
+  .modal_bg {
+    z-index: 50;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    transition: all .5s ease; }
+
+.modal__close {
+  z-index: 1;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 4rem;
+  height: 4rem;
+  font-size: 0;
+  border: none;
+  border-radius: 50%;
+  background: url("../img/icons/cross.svg") center no-repeat;
+  background-size: contain;
+  transition: all 0.3s; }
+  .modal__close:hover, .modal__close:active, .modal__close:focus {
+    cursor: pointer;
+    outline: none;
+    -webkit-transform: scale(1.1);
+        -ms-transform: scale(1.1);
+            transform: scale(1.1); }
+
+.modal__guts {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 6rem 2rem 2rem 2rem;
+  text-align: center;
+  font: 300 2rem "Segoe", "Arial", sans-serif;
+  overflow: auto; }
+
+/* Animation */
+@-webkit-keyframes bounce {
+  0% {
+    -webkit-transform: translateY(-2000px);
+    transform: translateY(-2000px); }
+  70% {
+    -webkit-transform: translateY(30px);
+    transform: translateY(30px); }
+  90% {
+    -webkit-transform: translateY(-10px);
+    transform: translateY(-10px); }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0); } }
+
+@keyframes bounce {
+  0% {
+    -webkit-transform: translateY(-2000px);
+    transform: translateY(-2000px); }
+  70% {
+    -webkit-transform: translateY(30px);
+    transform: translateY(30px); }
+  90% {
+    -webkit-transform: translateY(-10px);
+    transform: translateY(-10px); }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0); } }
+
+.form__item input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea {
+  display: block;
+  width: 100%;
+  height: 5rem;
+  padding: 1rem;
+  font: normal 2rem/1.33 "Segoe", "Arial", sans-serif;
+  color: #323749;
+  box-shadow: inset 0 0 0 1px rgba(76, 76, 76, 0.75);
+  border: 1px solid gainsboro;
+  border-radius: 5px;
+  opacity: 1;
+  transition: all 0.3s ease; }
+
+.form__item input[type="text"]::-webkit-input-placeholder,
+input[type="email"]::-webkit-input-placeholder,
+input[type="tel"]::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+  color: #b1b1b1;
+  opacity: 1;
+  transition: all 0.3s ease; }
+
+.form__item input[type="text"]::-moz-placeholder,
+input[type="email"]::-moz-placeholder,
+input[type="tel"]::-moz-placeholder,
+textarea::-moz-placeholder {
+  color: #b1b1b1;
+  opacity: 1;
+  transition: all 0.3s ease; }
+
+.form__item input[type="text"]:-ms-input-placeholder,
+input[type="email"]:-ms-input-placeholder,
+input[type="tel"]:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+  color: #b1b1b1;
+  opacity: 1;
+  transition: all 0.3s ease; }
+
+.form__item input[type="text"]:focus::-webkit-input-placeholder,
+input[type="email"]:focus::-webkit-input-placeholder,
+input[type="tel"]:focus::-webkit-input-placeholder,
+textarea:focus::-webkit-input-placeholder {
+  opacity: 0;
+  transition: all 0.3s ease;
+  border-color: #3c3c3b; }
+
+.form__item input[type="text"]:focus::-moz-placeholder,
+input[type="email"]:focus::-moz-placeholder,
+input[type="tel"]:focus::-moz-placeholder,
+textarea:focus::-moz-placeholder {
+  opacity: 0;
+  transition: all 0.3s ease;
+  border-color: #3c3c3b; }
+
+.form__item input[type="text"]:focus:-moz-placeholder,
+input[type="email"]:focus:-moz-placeholder,
+input[type="tel"]:focus:-moz-placeholder,
+textarea:focus:-moz-placeholder {
+  opacity: 0;
+  transition: all 0.3s ease;
+  border-color: #3c3c3b; }
+
+.form__item input[type="text"]:focus:-ms-input-placeholder,
+input[type="email"]:focus:-ms-input-placeholder,
+input[type="tel"]:focus:-ms-input-placeholder,
+textarea:focus:-ms-input-placeholder {
+  opacity: 0;
+  transition: all 0.3s ease;
+  border-color: #3c3c3b; }
+
+.form__item input[type="text"]:hover, .form__item input[type="text"]:active, .form__item input[type="text"]:focus,
+input[type="email"]:hover,
+input[type="email"]:active,
+input[type="email"]:focus,
+input[type="tel"]:hover,
+input[type="tel"]:active,
+input[type="tel"]:focus,
+textarea:hover,
+textarea:active,
+textarea:focus {
+  outline: none;
+  border-color: #3c3c3b; }
+
+.form__item input[type="text"]:required:valid,
+input[type="email"]:required:valid,
+input[type="tel"]:required:valid,
+textarea:required:valid {
+  outline: none;
+  border-color: green; }
+
+.errortext {
+  padding: 1rem;
+  color: red;
+  transition: all 0.3s ease; }
+
+@media (min-width: 767px) {
 
   html {
     font-size: 9px; } }

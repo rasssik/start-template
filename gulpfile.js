@@ -9,7 +9,7 @@ var server = require("browser-sync");
 var mqpacker = require("css-mqpacker");
 var rename = require("gulp-rename");
 var clean = require("gulp-clean");
-var cssnano = require("gulp-cssnano");
+var cleanCSS = require("gulp-clean-css");
 var image = require("gulp-image");
 var minify = require("gulp-minify");
 
@@ -63,12 +63,16 @@ gulp.task("copy", ["clean"], function() {
 
 // minify files
 gulp.task("style-min", function() {
-	return gulp.src("css/style.css")
-		.pipe(cssnano())
+	return gulp.src("css/*.css")
+		.pipe(cleanCSS({compatibility: "ie8", debug: true}, function(details) {
+    		console.log(details.name + ": "  + details.stats.originalSize);
+        console.log(details.name + ": " + details.stats.minifiedSize);
+    }))
+    .pipe(cleanCSS({compatibility: "ie8"}))
 		.pipe(rename({
 			suffix: ".min"
 		}))
-		.pipe(gulp.dest("build/css"));
+    .pipe(gulp.dest("build/css"));
 });
 
 gulp.task("img-min", function() {

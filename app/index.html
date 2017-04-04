@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<meta charset="utf-8">
+	<title> App Tittle </title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="msapplication-tap-highlight" content="no">
+	<meta name="format-detection" content="telephone=no">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="robots" content="index,follow">
+	<meta name="description" content="app description">
+	<meta name="keywords" content="app keywords">
+
+	<link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="img/favicon/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="img/favicon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="img/favicon/apple-touch-icon-114x114.png">
+	<link href="css/style.css" rel="stylesheet">
+
+	<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+	<div class="page-wrapper">
+
+		<header class="header">
+		
+			<div class="header__main-row">
+				<h1 class="logo">
+		      <a href="/" class="logo__text"> Site logo </a>
+		    </h1>
+			</div>
+		
+			<div class="menu">
+				<div id="menu__trigger" class="menu__trigger">
+					<span class="menu__trigger-decor"></span>
+				</div>
+			</div>
+		
+			<nav class="header__menu-row">
+				<ul class="header__menu-list">
+					<li class="header__menu-item">
+						<a href="#/" class="header__menu-link"> Home </a>
+					</li>
+					<li class="header__menu-item">
+						<a href="#/" class="header__menu-link"> About us </a>
+					</li>
+					<li class="header__menu-item">
+						<a href="#/" class="header__menu-link"> News </a>
+					</li>
+					<li class="header__menu-item">
+						<a href="#/" class="header__menu-link"> Blog </a>
+					</li>
+				</ul>
+			</nav>
+		</header>
+
+	  <main class="main"></main>
+
+		<footer class="footer">
+		  <div class="container">
+		    <span>Place sticky footer content here.</span>
+		  </div>
+		</footer>
+
+	</div>
+
+	<div id="back-top" class="back-top">
+		<a href="#top"></a>
+	</div>
+	
+	<div class="modal-bg"></div>
+	
+	<div id="modal_window" class="modal  modal--call" role="dialog">
+		<button class="modal__close"> Close </button>
+		<div class="modal__guts" role="document">
+			<h2 class="modal__title"> Заказать звонок </h2>
+			<form id="modal_form" class="form" method="post" action="/">
+				<div class="form__unit">
+					<input type="text" id="name" name="name" value="" required="" placeholder=" " minlength="3">
+					<label for="name">Имя*</label>
+				</div>
+				<div class="form__unit">
+					<input type="tel" id="phone" name="phone" value="" required="" placeholder=" " pattern="^\(?[0-9]{3}\)?(\s+)?[0-9]{3}-?[0-9]{2}-?[0-9]{2}$">
+					<label for="phone">Телефон*</label>
+					<div class="form__error">
+						Введите пожалуйста полный номер телефона. В формате (xxx)-xxx-xx-xx
+					</div>
+				</div>
+				<div class="form__unit">
+					<textarea id="text" rows="4" cols="50" name="message" placeholder="Комментарий. Например, название нужной запчасти"></textarea>
+				</div>
+				<div class="form__unit">
+					<input class="form__submit  button" type="submit" value="Уточнить наличие">
+				</div>
+			</form>
+		</div>
+	</div>
+	
+	<div id="modal_sucsess" class="modal  modal--sucsess" role="dialog">
+		<button class="modal__close"> Close </button>
+		<div class="modal__guts" role="document">
+			<h2 class="modal__title"> Спасибо за заявку! </h2>
+			<p> Наш сотрудник свяжется с вами, как только уточнит наличие запчасти. <br> Обычно ответ приходит в течение 20 минут. </p>
+		</div>
+	</div>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+	<script src="js/helper.js"></script>
+	<script src="js/main.js"></script>
+
+</body>
+
+</html>

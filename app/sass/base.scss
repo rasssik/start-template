@@ -1,13 +1,14 @@
 // base style
-*, *::before, *::after {
-  box-sizing: border-box;
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
 }
 
 html {
 	min-height: 100%;
-	font-size: 7px;
+	font-size: 8px;
 
-// if you want responsive adaptive
 	@media (min-width: $tablet) {
 		font-size: 9px;
 	}
@@ -17,41 +18,51 @@ html {
 }
 
 body {
-  position: relative;
-  margin: 0;
-  padding: 0;
+	position: relative;
+	margin: 0;
+	padding: 0;
 	height: 100%;
-  width: 100%;
+	width: 100%;
 	max-width: 100%;
 	min-height: 100%;
-	font: 300 2rem/1.3 $font_1;
-	color: black;
+	font: normal 1.6rem $font_1;
+	color: $color_body;
 	overflow-x: hidden;
 	-webkit-text-size-adjust: none;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
 
-dl, dt, dd {
-  margin: 0;
-  padding: 0;
+dd, dl, dt {
+	margin: 0;
+	padding: 0;
 }
 
 a {
 	text-decoration: none;
 	color: $color_link;
+	transition: all 0.5s ease;
+
 	&:hover,
 	&:active,
 	&:focus {
-		text-decoration: underline;
+		color: $color_link_hover;
 	}
 }
 
-.wrapper {
+.page-wrapper {
 	position: relative;
 	min-height: 100%;
 	height: auto !important;
 	overflow: hidden;
+}
+
+.container {
+	@include container;
+}
+
+.main {
+	min-height: calc(100vh - 50px);
 }
 
 // back to top
@@ -69,10 +80,13 @@ a {
 		background-size: contain;
 		text-align: center;
 		text-decoration: none;
+		transition: all 0.5s ease;
 
-		&:hover {
-			background-image: url("../img/icons/top_hover.svg");
+		&:hover,
+		&:active {
+			outline: none;
+			cursor: pointer;
+			transform: scale(1.1);
 		}
 	}
 }
-// end base style

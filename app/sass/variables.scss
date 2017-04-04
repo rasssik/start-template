@@ -1,0 +1,29 @@
+// colors
+$color_body: rgba(50, 55, 73, 1);
+$color_link: rgba(181, 185, 190, 1);
+$color_link_hover: rgba(188, 187, 195, 1);
+
+$color_field: rgba(50, 55, 73, 1);
+$color_field_border: rgba(220, 220, 220, 1);
+$color_field_hover: rgba(225, 222, 222, 1);
+
+$gray_dark: #3c3c3b;
+$gray: #878787;
+$gray_light: #b1b1b1;
+$gray_lightest: #f5f5f5;
+
+// shadow
+$color_shadow: rgba(76, 76, 76, 0.75);
+$img-shadow: 2px 2px 5px $color_shadow;
+
+// fonts
+$font_1: "Fira Sans", "Arial", sans-serif;
+
+// media queries
+$mobile: 320px;
+$mobile_full: 480px;
+
+$tablet: 768px;
+$tablet_full: 992px;
+
+$desktop: 1200px;

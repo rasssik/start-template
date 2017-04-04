@@ -1,0 +1,17 @@
+.logo {
+	position: relative;
+	z-index: 100;
+}
+
+.logo__text {
+	color: darkgray;
+
+	&:hover {
+		color: gray;
+	}
+
+	&:focus,
+	&:hover {
+		text-decoration: none;
+	}
+}

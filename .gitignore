@@ -1,5 +1,5 @@
-build/
-design/
+app/build/
+app/design/
 
 .Saved/
 _arc/

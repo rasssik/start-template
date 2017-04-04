@@ -1,0 +1,28 @@
+.button {
+	position: relative;
+	display: inline-block;
+	max-width: 30rem;
+	margin: 1rem;
+	padding: 1rem 2rem;
+	border: 0;
+	border-radius: 0;
+	font: normal 1.4rem $font_1;
+	color: #fff;
+	background-color: $gray;
+	cursor: pointer;
+	vertical-align: middle;
+	text-align: center;
+	white-space: nowrap;
+	text-decoration: none;
+	box-shadow: none;
+	transition: all 0.5s ease;
+	user-select: none;
+	touch-action: manipulation;
+	-webkit-appearance: button;
+
+	&:hover,
+	&:active {
+		text-decoration: none;
+		outline: 0;
+	}
+}

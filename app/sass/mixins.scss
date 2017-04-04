@@ -8,17 +8,14 @@
 }
 
 @mixin container {
-  width: 100%;
-  max-width: 1200px;
+	width: 100%;
+  max-width: 1170px;
   margin: 0 auto;
-	padding: 0 1rem;
+	padding: 0 30px;
 
-  // @media (min-width: $tablet) {
-  //   width: 700px;
-  // }
-  // @media (min-width: $desktop) {
-  //   width: 1230px;
-  // }
+  @media (max-width: $desktop) {
+    padding: 0 15px;
+  }
 }
 
 // centering
@@ -27,8 +24,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%,-50%);
-	min-width: 100%;
-	min-height: 100%;
+	// min-width: 100%;
+	// min-height: 100%;
 }
 
 // vertical centering
@@ -40,6 +37,13 @@
     height: 100%;
 		width: .1px;
   }
+}
+
+// for nice text
+@mixin niceText($overflow: ellipsis) {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: $overflow; // values are: clip, ellipsis, or a string
 }
 
 // for shadow(?) after content_text
@@ -55,13 +59,6 @@
     height: 5rem;
 		background: linear-gradient(to bottom, transparent 1%, #333D46);
 	}
-}
-
-// for nice text
-@mixin truncateText($overflow: ellipsis) {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: $overflow; // values are: clip, ellipsis, or a string
 }
 
 // tooltip

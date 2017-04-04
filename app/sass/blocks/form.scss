@@ -1,0 +1,146 @@
+// inputs and selects base ( @extend )
+%form_field {
+	display: block;
+	width: 100%;
+	height: 4rem;
+	padding: 10px;
+	text-overflow: ellipsis;
+	font: normal 1.4rem $font_1;
+	color: $color_field;
+	box-shadow: 0 0 0 1px $color_shadow;
+	border: 1px solid $color_field_border;
+	border-radius: 5px;
+	opacity: 1;
+	transition: all 0.5s ease;
+
+	&::-webkit-input-placeholder {
+		color: $gray_light;
+	}
+
+	&::-moz-placeholder {
+		color: $gray_light;
+	}
+
+	&:-ms-input-placeholder {
+		color: $gray_light;
+	}
+}
+
+// common form style
+input,
+textarea {
+	@extend %form_field;
+
+	&:active,
+	&:focus,
+	&:hover {
+		outline: none;
+		border-color: $color_field_hover;
+	}
+
+	&:focus::-webkit-input-placeholder {
+		color: transparent;
+	}
+
+	&:focus::-moz-placeholder {
+		color: transparent;
+	}
+
+	&:focus:-ms-input-placeholder {
+		color: transparent;
+	}
+
+	&:required:valid {
+		outline: none;
+		border-color: green;
+	}
+}
+
+.form {
+	max-width: 100%;
+	margin: 0 auto;
+	padding: 1rem;
+}
+
+.form__unit {
+	position: relative;
+	margin-bottom: 20px;
+
+	> label {
+		position: absolute;
+		top: 10px;
+		left: 10px;
+		font-size: 14px;
+		opacity: 0.3;
+	}
+
+	 > input[type="email"],
+	 > input[type="tel"],
+	 > input[type="text"] {
+
+	 		&:focus {
+			outline: 0;
+			background-color: #fff;
+
+			& + label {
+				opacity: 0;
+			}
+		}
+
+		&:valid {
+			background: #fff url("../img/icons/check.svg");
+			background-size: 15px;
+			background-repeat: no-repeat;
+			background-position: 3px 10px;
+
+			& + label {
+				opacity: 0;
+			}
+		}
+
+		&:invalid:not(:focus):not(:placeholder-shown) {
+			background: pink;
+
+			& + label {
+				opacity: 0;
+			}
+		}
+
+		&:invalid:focus:not(:placeholder-shown) {
+			& ~ .form__error {
+				max-height: 20rem;
+				padding: 1rem 2rem;
+			}
+		}
+	}
+
+	> textarea {
+		height: auto;
+		font-size: 14px;
+
+		&:focus {
+			outline: 0;
+			background-color: #fff;
+		}
+	}
+}
+
+// error text
+.form__error {
+	max-height: 0;
+	overflow: hidden;
+	display: block;
+	width: 100%;
+	padding: 0;
+	text-align: center;
+	font: normal 1.4rem $font_1;
+	color: red;
+	transition: all 0.5s ease;
+}
+
+// submit
+.form__submit {
+	display: block;
+	width: 100%;
+	max-width: 100%;
+}

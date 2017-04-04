@@ -1,35 +1,49 @@
+// background
+.modal-bg {
+	z-index: 50;
+	position: fixed;
+	top: 0;
+	left: 0;
+	display: none;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5);
+	transition: all .5s ease;
+}
+
 .modal {
 	z-index: 1000;
 	position: fixed;
-	top: 50%;
-	left: 50%;
-	width: 60rem;
-	max-width: 100%;
-	height: 40rem;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	display: none;
+	width: 100%;
+	max-width: 60rem;
+	height: 50rem;
 	max-height: 100%;
-	background: rgba(255,255,255, 0.9);
+	margin: auto;
+	padding: 0;
+	background: #fff;
+	border: 2px solid rgba(0,0,0,0.15);
 	box-shadow: 0.4rem 0.4rem 0.5rem $color_shadow;
 	outline: 0;
 	overflow: hidden;
-	transform: translate(-50%, -50%);
+	visibility: hidden;
 	transition: all .5s ease;
 
-	// show modal window
-	&_show {
+	// states
+	&--show {
 		display: block;
+		visibility: visible !important;
 		animation: bounce 0.6s;
 	}
-	// background
-	&_bg {
-		z-index: 50;
-		position: fixed;
-		top: 0;
-		left: 0;
-		display: none;
-		width: 100%;
-		height: 100%;
-		background: rgba(0, 0, 0, 0.6);
-		transition: all .5s ease;
+	&--call {
+		height: 45rem;
+	}
+	&--sucsess {
+		height: 20rem;
 	}
 }
 
@@ -45,7 +59,7 @@
 	border-radius: 50%;
 	background: url("../img/icons/cross.svg") center no-repeat;
 	background-size: contain;
-	transition: all 0.3s;
+	transition: all 0.5s;
 
 	&:hover,
 	&:active,
@@ -62,13 +76,12 @@
 	left: 0;
 	width: 100%;
 	height: 100%;
-	padding: 6rem 2rem 2rem 2rem;
+	padding: 2rem;
 	text-align: center;
-	font: 300 2rem $font_1;
 	overflow: auto;
 }
 
-/* Animation */
+// modal animation
 @-webkit-keyframes bounce {
 	0% {
 		-webkit-transform: translateY(-2000px);

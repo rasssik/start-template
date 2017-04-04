@@ -1,0 +1,39 @@
+<div id="back-top" class="back-top">
+	<a href="#top"></a>
+</div>
+
+<div class="modal-bg"></div>
+
+<div id="modal_window" class="modal  modal--call" role="dialog">
+	<button class="modal__close"> Close </button>
+	<div class="modal__guts" role="document">
+		<h2 class="modal__title"> Заказать звонок </h2>
+		<form id="modal_form" class="form" method="post" action="/">
+			<div class="form__unit">
+				<input type="text" id="name" name="name" value="" required="" placeholder=" " minlength="3">
+				<label for="name">Имя*</label>
+			</div>
+			<div class="form__unit">
+				<input type="tel" id="phone" name="phone" value="" required="" placeholder=" " pattern="^\(?[0-9]{3}\)?(\s+)?[0-9]{3}-?[0-9]{2}-?[0-9]{2}$">
+				<label for="phone">Телефон*</label>
+				<div class="form__error">
+					Введите пожалуйста полный номер телефона. В формате (xxx)-xxx-xx-xx
+				</div>
+			</div>
+			<div class="form__unit">
+				<textarea id="text" rows="4" cols="50" name="message" placeholder="Комментарий. Например, название нужной запчасти"></textarea>
+			</div>
+			<div class="form__unit">
+				<input class="form__submit  button" type="submit" value="Уточнить наличие">
+			</div>
+		</form>
+	</div>
+</div>
+
+<div id="modal_sucsess" class="modal  modal--sucsess" role="dialog">
+	<button class="modal__close"> Close </button>
+	<div class="modal__guts" role="document">
+		<h2 class="modal__title"> Спасибо за заявку! </h2>
+		<p> Наш сотрудник свяжется с вами, как только уточнит наличие запчасти. <br> Обычно ответ приходит в течение 20 минут. </p>
+	</div>
+</div>

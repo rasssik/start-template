@@ -8,12 +8,13 @@ var plumber = require("gulp-plumber");
 var postcss = require("gulp-postcss");
 var autoprefixer = require("autoprefixer");
 var mqpacker = require("css-mqpacker");
-var csscomb = require("gulp-csscomb");
+// var csscomb = require("gulp-csscomb");
 var html = require("gulp-rigger");
+var typograf = require("gulp-typograf");
+var stylelint = require("gulp-stylelint");
 var rename = require("gulp-rename");
 var clean = require("gulp-clean");
 var csso = require("gulp-csso");
-// var cleanCSS = require("gulp-clean-css");
 var image = require("gulp-image");
 var minify = require("gulp-minify");
 
@@ -30,7 +31,15 @@ gulp.task("style", function() {
 				sort: true
 			})
 		]))
-		.pipe(csscomb())
+		.pipe(stylelint({
+			failAfterError: true,
+      reportOutputDir: 'reports/lint',
+      reporters: [
+        {formatter: 'json', save: 'report.json'}
+      ],
+      debug: true
+    }))
+		// .pipe(csscomb())
 		.pipe(gulp.dest("app/css"))
 		.pipe(server.reload({
 			stream: true
@@ -39,7 +48,7 @@ gulp.task("style", function() {
 
 // html build task
 gulp.task("html", function() {
-	gulp.src("app/html/*.html")
+	gulp.src("app/pages/*.html")
 		.pipe(html())
 		.pipe(gulp.dest("app"))
 		.pipe(server.reload({
@@ -57,7 +66,7 @@ gulp.task("serve", ["style", "html"], function() {
 	});
 
 	gulp.watch("app/sass/**/*.{scss,sass}", ["style"]);
-	gulp.watch("app/html/**/*.*", ["html"]);
+	gulp.watch("app/pages/**/*.*", ["html"]);
 	gulp.watch("app/js/*.js").on("change", server.reload);
 });
 
@@ -90,6 +99,14 @@ gulp.task("copy", ["clean"], function() {
 //     .pipe(gulp.dest("build/css"));
 // });
 
+gulp.task("typograf", function() {
+	gulp.src("app/*.html")
+		.pipe(typograf({
+			locale: ['ru', 'en-US']
+		}))
+		.pipe(gulp.dest("build/"));
+});
+
 // minify files
 gulp.task("style-min", function() {
 	return gulp.src("app/css/*.css")
@@ -118,4 +135,4 @@ gulp.task("js-min", function() {
 });
 
 // build task (final)
-gulp.task("build", ["clean", "copy", "style-min", "img-min", "js-min"], function() {});
+gulp.task("build", ["clean", "copy", "typograf", "style-min", "img-min", "js-min"], function() {});

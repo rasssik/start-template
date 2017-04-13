@@ -15,7 +15,10 @@
     "gulp-autoprefixer": "^3.1.1",
 		"css-mqpacker": "^5.0.1",
 		"gulp-csscomb": "3.0.8",
+		"gulp-stylelint": "3.9.0",
+		"stylelint-config-standard": "16.0.0",
 		"gulp-rigger": "^0.5.8",
+		"gulp-typograf": "3.0.0",
 
 		"gulp-rename": "^1.2.2",
 		"gulp-clean": "^0.3.2",

@@ -8,10 +8,9 @@ var plumber = require("gulp-plumber");
 var postcss = require("gulp-postcss");
 var autoprefixer = require("autoprefixer");
 var mqpacker = require("css-mqpacker");
-// var csscomb = require("gulp-csscomb");
 var html = require("gulp-rigger");
 var typograf = require("gulp-typograf");
-var stylelint = require("gulp-stylelint");
+var stylelint = require("stylelint");
 var rename = require("gulp-rename");
 var clean = require("gulp-clean");
 var csso = require("gulp-csso");
@@ -31,19 +30,27 @@ gulp.task("style", function() {
 				sort: true
 			})
 		]))
-		.pipe(stylelint({
-			failAfterError: true,
-      reportOutputDir: 'reports/lint',
-      reporters: [
-        {formatter: 'json', save: 'report.json'}
-      ],
-      debug: true
-    }))
-		// .pipe(csscomb())
 		.pipe(gulp.dest("app/css"))
 		.pipe(server.reload({
 			stream: true
 		}));
+});
+
+// linting css task
+gulp.task("style-lint", ["style"], function() {
+  return gulp
+  .src("app/css/**/*")
+    .pipe(postcss([
+      stylelint({
+				failAfterError: true,
+      	reportOutputDir: "reports/lint",
+      	reporters: [
+        	{formatter: "verbose", console: false},
+        	{formatter: "json", save: "report.json"}
+      	],
+      	debug: false
+			}),
+  	]));
 });
 
 // html build task
@@ -57,7 +64,7 @@ gulp.task("html", function() {
 });
 
 // browser-sync task
-gulp.task("serve", ["style", "html"], function() {
+gulp.task("serve", ["style", "style-lint", "html"], function() {
 	server.init({
 		server: "./app",
 		notify: false,
@@ -86,19 +93,6 @@ gulp.task("copy", ["clean"], function() {
 	gulp.src("app/css/**/*.css").pipe(gulp.dest("build/css"));
 });
 
-// gulp.task("style-min", function() {
-// 	return gulp.src("app/css/*.css")
-// 		.pipe(cleanCSS({compatibility: "ie8", debug: true}, function(details) {
-//     		console.log(details.name + ": "  + details.stats.originalSize);
-//         console.log(details.name + ": " + details.stats.minifiedSize);
-//     }))
-//     .pipe(cleanCSS({compatibility: "ie8"}))
-// 		.pipe(rename({
-// 			suffix: ".min"
-// 		}))
-//     .pipe(gulp.dest("build/css"));
-// });
-
 gulp.task("typograf", function() {
 	gulp.src("app/*.html")
 		.pipe(typograf({
@@ -111,7 +105,7 @@ gulp.task("typograf", function() {
 gulp.task("style-min", function() {
 	return gulp.src("app/css/*.css")
 		.pipe(csso({
-			restructure: true,
+			restructure: false,
 			sourceMap: true,
 			debug: true
 		}))

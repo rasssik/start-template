@@ -271,6 +271,9 @@ a {
       -ms-transform: translate(100%, 0);
           transform: translate(100%, 0); }
 
+.main {
+  padding-top: 8rem; }
+
 .button {
   position: relative;
   display: inline-block;
@@ -279,7 +282,7 @@ a {
   padding: 1rem 2rem;
   border: 0;
   border-radius: 0;
-  font: normal 1.4rem "Fira Sans", "Arial", sans-serif;
+  font: normal 2rem "Fira Sans", "Arial", sans-serif;
   color: #fff;
   background-color: #878787;
   cursor: pointer;
@@ -300,12 +303,15 @@ a {
     text-decoration: none;
     outline: 0; }
 
-input,
+input[type="email"],
+input[type="tel"],
+input[type="text"],
 textarea {
   display: block;
   width: 100%;
   height: 4rem;
-  padding: 10px;
+  padding: 1rem;
+  padding-left: 3rem;
   text-overflow: ellipsis;
   font: normal 1.4rem "Fira Sans", "Arial", sans-serif;
   color: #323749;
@@ -313,40 +319,42 @@ textarea {
   border: 1px solid gainsboro;
   border-radius: 5px;
   opacity: 1;
-  transition: all 0.5s ease; }
-  input::-webkit-input-placeholder,
-  textarea::-webkit-input-placeholder {
-    color: #b1b1b1; }
-  input::-moz-placeholder,
-  textarea::-moz-placeholder {
-    color: #b1b1b1; }
-  input:-ms-input-placeholder,
-  textarea:-ms-input-placeholder {
-    color: #b1b1b1; }
+  transition: all 0.5s ease;
+  -webkit-appearance: none; }
 
-input:active, input:focus, input:hover,
-textarea:active,
-textarea:focus,
-textarea:hover {
-  outline: none;
-  border-color: #e1dede; }
-
-input:focus::-webkit-input-placeholder,
-textarea:focus::-webkit-input-placeholder {
-  color: transparent; }
-
-input:focus::-moz-placeholder,
-textarea:focus::-moz-placeholder {
-  color: transparent; }
-
-input:focus:-ms-input-placeholder,
-textarea:focus:-ms-input-placeholder {
-  color: transparent; }
-
-input:required:valid,
+input[type="email"]:required:valid,
+input[type="tel"]:required:valid,
+input[type="text"]:required:valid,
 textarea:required:valid {
   outline: none;
   border-color: green; }
+
+/* placeholder`s */
+input::-webkit-input-placeholder, input::-moz-placeholder, input:-ms-input-placeholder,
+textarea::-webkit-input-placeholder,
+textarea::-moz-placeholder,
+textarea:-ms-input-placeholder {
+  color: #b1b1b1;
+  opacity: 1;
+  transition: all 0.3s ease; }
+
+input:focus::-webkit-input-placeholder, input:focus::-moz-placeholder, input:focus:-ms-input-placeholder,
+textarea:focus::-webkit-input-placeholder,
+textarea:focus::-moz-placeholder,
+textarea:focus:-ms-input-placeholder {
+  color: transparent;
+  opacity: 0; }
+
+input:hover, input:active, input:focus,
+textarea:hover,
+textarea:active,
+textarea:focus {
+  outline: none;
+  border-color: #e1dede; }
+
+textarea {
+  height: auto;
+  resize: none; }
 
 .form {
   max-width: 100%;
@@ -358,7 +366,7 @@ textarea:required:valid {
   margin-bottom: 20px; }
   .form__unit > label {
     position: absolute;
-    top: 10px;
+    top: 8px;
     left: 10px;
     font-size: 14px;
     opacity: 0.3; }
@@ -395,28 +403,31 @@ textarea:required:valid {
   .form__unit > input[type="text"]:invalid:focus:not(:placeholder-shown) ~ .form__error {
     max-height: 20rem;
     padding: 1rem 2rem; }
-  .form__unit > textarea {
-    height: auto;
-    font-size: 14px; }
-    .form__unit > textarea:focus {
-      outline: 0;
-      background-color: #fff; }
+  .form__unit > textarea:focus {
+    outline: 0;
+    background-color: #fff; }
+    .form__unit > textarea:focus + label {
+      opacity: 0; }
+  .form__unit > textarea:not(:focus):not(:placeholder-shown) + label {
+    opacity: 0; }
 
 .form__error {
-  max-height: 0;
-  overflow: hidden;
   display: block;
   width: 100%;
+  max-height: 0;
   padding: 0;
   text-align: center;
   font: normal 1.4rem "Fira Sans", "Arial", sans-serif;
   color: red;
+  background: transparent;
+  overflow: hidden;
   transition: all 0.5s ease; }
 
 .form__submit {
   display: block;
   width: 100%;
-  max-width: 100%; }
+  max-width: 100%;
+  margin: 0 auto; }
 
 .footer {
   height: 50px;

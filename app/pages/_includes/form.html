@@ -1,0 +1,27 @@
+<form id="order" class="form" method="post" action="/">
+	<div class="form__unit">
+		<input type="text" id="first_name" value="" name="name" required placeholder=" " autofocus="autofocus">
+		<label for="first_name">Ваше имя</label>
+	</div>
+	<div class="form__unit">
+		<input type="email" id="email" value="" name="email" required placeholder=" ">
+		<label for="email">Ваша почта</label>
+		<div class="form__error">
+			Ждем от Вас реальный почтовый ящик.
+		</div>
+	</div>
+	<div class="form__unit">
+		<input type="tel" id="phone" name="phone" value="" required placeholder=" " pattern="^((8|\+3)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$" />
+		<label for="phone">Телефон</label>
+		<div class="form__error">
+			Введите пожалуйста реальный телефон.
+		</div>
+	</div>
+	<div class="form__unit">
+		<textarea id="form_text" rows="4" cols="50" name="message" placeholder=" "></textarea>
+		<label for="form_text">Сообщение</label>
+	</div>
+	<div class="form__unit">
+		<button class="form__submit  button" type="submit" value="Отправить"> Отправить </button>
+	</div>
+</form>

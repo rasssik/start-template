@@ -9,11 +9,13 @@ var postcss = require("gulp-postcss");
 var autoprefixer = require("autoprefixer");
 var mqpacker = require("css-mqpacker");
 var html = require("gulp-rigger");
+
 var typograf = require("gulp-typograf");
-var stylelint = require("stylelint");
 var rename = require("gulp-rename");
 var clean = require("gulp-clean");
 var csso = require("gulp-csso");
+var csscomb = require("gulp-csscomb");
+var stylefmt = require("gulp-stylefmt");
 var image = require("gulp-image");
 var minify = require("gulp-minify");
 
@@ -24,7 +26,7 @@ gulp.task("style", function() {
 		.pipe(sass())
 		.pipe(postcss([
 			autoprefixer({
-				browsers: ["last 4 versions"]
+				browsers: ["last 5 versions"]
 			}),
 			mqpacker({
 				sort: true
@@ -34,23 +36,6 @@ gulp.task("style", function() {
 		.pipe(server.reload({
 			stream: true
 		}));
-});
-
-// linting css task
-gulp.task("style-lint", ["style"], function() {
-  return gulp
-  .src("app/css/**/*")
-    .pipe(postcss([
-      stylelint({
-				failAfterError: true,
-      	reportOutputDir: "reports/lint",
-      	reporters: [
-        	{formatter: "verbose", console: false},
-        	{formatter: "json", save: "report.json"}
-      	],
-      	debug: false
-			}),
-  	]));
 });
 
 // html build task
@@ -64,7 +49,7 @@ gulp.task("html", function() {
 });
 
 // browser-sync task
-gulp.task("serve", ["style", "style-lint", "html"], function() {
+gulp.task("serve", ["style", "html"], function() {
 	server.init({
 		server: "./app",
 		notify: false,
@@ -77,7 +62,8 @@ gulp.task("serve", ["style", "style-lint", "html"], function() {
 	gulp.watch("app/js/*.js").on("change", server.reload);
 });
 
-// build task (start)
+// build task
+// (start)
 gulp.task("clean", function() {
 	return gulp.src("app/build", {
 			read: false
@@ -86,14 +72,15 @@ gulp.task("clean", function() {
 });
 
 gulp.task("copy", ["clean"], function() {
-	gulp.src("app/*.html").pipe(gulp.dest("build"));
 	gulp.src("app/fonts/**/*.{woff,woff2,eot,ttf}").pipe(gulp.dest("build/fonts"));
+	gulp.src("app/*.html").pipe(gulp.dest("build"));
 	gulp.src("app/img/**/*.{png,jpg,gif,svg}").pipe(gulp.dest("build/img"));
 	gulp.src("app/js/**/*.js").pipe(gulp.dest("build/js"));
 	gulp.src("app/css/**/*.css").pipe(gulp.dest("build/css"));
 });
 
-gulp.task("typograf", function() {
+// prepare texts
+gulp.task("typograf", ["copy"], function() {
 	gulp.src("app/*.html")
 		.pipe(typograf({
 			locale: ['ru', 'en-US']
@@ -101,21 +88,23 @@ gulp.task("typograf", function() {
 		.pipe(gulp.dest("build/"));
 });
 
-// minify files
-gulp.task("style-min", function() {
+// пока исключено!
+// gulp.task("style-lint", function() {
+// 	return gulp.src("app/css/*.css")
+// 		.pipe(csscomb())
+// 		.pipe(gulp.dest("build/css/"));
+// });
+
+// optimization and format CSS
+gulp.task("style-min", ["copy"], function() {
 	return gulp.src("app/css/*.css")
 		.pipe(csso({
 			restructure: false,
 			sourceMap: true,
 			debug: true
 		}))
-		.pipe(gulp.dest("build/css"));
-});
-
-gulp.task("img-min", function() {
-	gulp.src("app/img/**/*")
-		.pipe(image())
-		.pipe(gulp.dest("build/img/"));
+		// .pipe(stylefmt())
+		.pipe(gulp.dest("build/css/"));
 });
 
 gulp.task("js-min", function() {
@@ -125,8 +114,15 @@ gulp.task("js-min", function() {
 				min: ".min.js"
 			},
 		}))
-		.pipe(gulp.dest("build/js"))
+		.pipe(gulp.dest("build/js/"))
 });
 
-// build task (final)
-gulp.task("build", ["clean", "copy", "typograf", "style-min", "img-min", "js-min"], function() {});
+gulp.task("img-min", function() {
+	gulp.src("app/img/**/*")
+		.pipe(image())
+		.pipe(gulp.dest("build/img/"));
+});
+
+// build task
+// (final)
+gulp.task("build", ["clean", "copy", "typograf", "style-min", "js-min", "img-min"], function() {});

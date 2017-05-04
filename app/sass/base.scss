@@ -21,12 +21,12 @@ body {
 	position: relative;
 	margin: 0;
 	padding: 0;
-	height: 100%;
 	width: 100%;
 	max-width: 100%;
+	height: 100%;
 	min-height: 100%;
 	font: normal 1.6rem $font_1;
-	color: $color_body;
+  color: $color_body;
 	overflow-x: hidden;
 	-webkit-text-size-adjust: none;
 	-webkit-font-smoothing: antialiased;
@@ -67,10 +67,10 @@ a {
 
 // back to top
 .back-top {
+	z-index: 1001;
 	position: fixed;
-	bottom: 3rem;
-	right: 3rem;
-	z-index: 1000;
+	bottom: 2rem;
+	right: 2rem;
 
 	a {
 		display: block;
@@ -80,6 +80,7 @@ a {
 		background-size: contain;
 		text-align: center;
 		text-decoration: none;
+		text-indent: -9999;
 		transition: all 0.5s ease;
 		&:hover,
 		&:active,

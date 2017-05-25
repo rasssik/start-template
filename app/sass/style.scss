@@ -1,10 +1,11 @@
 // base
-@import "_variables";
-@import "_mixins";
+@import "helpers/_variables";
+@import "helpers/_mixins";
 @import "reset";
 @import "base";
 
 // blocks
+@import "helpers/_sprite";
 @import "blocks/header";
 @import "blocks/logo";
 @import "blocks/menu";

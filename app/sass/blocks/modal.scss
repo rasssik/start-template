@@ -52,13 +52,10 @@
 	position: absolute;
 	top: 1rem;
 	right: 1rem;
-	width: 4rem;
-	height: 4rem;
+	padding: 0;
 	font-size: 0;
 	border: none;
 	border-radius: 50%;
-	background: url("../img/icons/cross.svg") center no-repeat;
-	background-size: contain;
 	transition: all 0.5s;
 
 	&:hover,

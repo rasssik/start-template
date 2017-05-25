@@ -70,20 +70,22 @@ a {
 
 	a {
 		display: block;
-		width: 5rem;
-		height: 5rem;
-		background: url("../img/icons/top.svg") center no-repeat;
+		width: 4rem;
+		height: 4rem;
+		background: url("../img/icons/to-top.png") center no-repeat;
 		background-size: contain;
 		text-align: center;
 		text-decoration: none;
 		text-indent: -9999px;
+		opacity: 0.3;
 		transition: all 0.5s ease;
+
 		&:hover,
 		&:active,
 		&:focus {
 			outline: none;
 			cursor: pointer;
-			transform: scale(1.1);
+			opacity: 0.6;
 		}
 	}
 }

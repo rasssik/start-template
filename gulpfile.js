@@ -15,12 +15,14 @@ var rename = require("gulp-rename");
 var clean = require("gulp-clean");
 var csso = require("gulp-csso");
 var csscomb = require("gulp-csscomb");
-var stylefmt = require("gulp-stylefmt");
 var minify = require("gulp-minify");
-// var image = require("gulp-image");
 var imagemin = require("gulp-imagemin");
 
-// var svgSprite = require("gulp-svg-sprites");
+var html5Lint = require("gulp-html5-lint");
+var stylelint = require("stylelint");
+var postcss_scss = require("postcss-scss");
+var reporter = require("postcss-reporter");
+
 var svgSprite = require("gulp-svg-sprite");
 var svgmin = require("gulp-svgmin");
 var cheerio = require("gulp-cheerio");
@@ -82,7 +84,7 @@ gulp.task("svgSpriteBuild", function() {
 		.pipe(cheerio({
 			run: function($) {
 				$("[fill]").removeAttr("fill");
-				$("[style]").removeAttr("style");
+				$("[stroke]").removeAttr("stroke");
 				$("[style]").removeAttr("style");
 			}
 		}))
@@ -160,6 +162,29 @@ gulp.task("img-min", function() {
 });
 // build task (end)
 
+// testing your build files
+gulp.task("html5-lint", function() {
+	return gulp.src("build/**/*.html")
+		.pipe(html5Lint());
+});
+
+// css linting
+gulp.task("linting", function() {
+	return gulp.src(["app/sass/**/*.scss", '!' + "app/sass/helpers/*.scss"])
+		.pipe(postcss(
+			[
+				stylelint(),
+				reporter({
+					clearMessages: true
+				})
+			], {
+				syntax: postcss_scss
+			}
+		));
+});
+
 // tasks
 gulp.task("build", ["clean", "copy", "typograf", "style-min", "js-min", "img-min"], function() {});
+gulp.task("validation", ["html5-lint"]);
+gulp.task("cssLint", ["linting"]);
 gulp.task("svgSprite", ["svgSpriteBuild"]);
